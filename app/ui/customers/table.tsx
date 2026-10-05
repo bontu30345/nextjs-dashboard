@@ -21,6 +21,12 @@ export default async function CustomersTable({
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
             <div className="overflow-hidden rounded-md bg-gray-50 p-2 md:pt-0">
+              {customers.length === 0 ? (
+                <p className="p-6 text-center text-sm text-gray-500">
+                  No customers found.
+                </p>
+              ) : (
+                <>
               <div className="md:hidden">
                 {customers?.map((customer) => (
                   <div
@@ -114,6 +120,8 @@ export default async function CustomersTable({
                   ))}
                 </tbody>
               </table>
+                </>
+              )}
             </div>
           </div>
         </div>

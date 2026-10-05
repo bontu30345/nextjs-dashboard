@@ -14,9 +14,13 @@ async function listInvoices() {
 }
 
 export async function GET() {
+  if (process.env.NODE_ENV !== 'development') {
+    return Response.json({ error: 'Not found' }, { status: 404 });
+  }
+
   try {
     return Response.json(await listInvoices());
-  } catch (error) {
-    return Response.json({ error }, { status: 500 });
+  } catch {
+    return Response.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
